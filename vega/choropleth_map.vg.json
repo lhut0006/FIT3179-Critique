@@ -1,0 +1,127 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Tweets per Capita containing #trump during the 2020 American election",
+    "width": 650,
+    "height": 400,
+    "projection": {
+        "type": "equalEarth"
+    },
+    "data": {
+        "url": "https://raw.githubusercontent.com/lhut0006/FIT3179/refs/heads/main/js/ne_110m.json",
+        "format": {
+            "type": "topojson",
+            "feature": "ne_110m_admin_0_countries"
+        }
+    },
+    "transform": [
+        {
+            "calculate": "datum.properties.NAME",
+            "as": "country"
+        },
+        {
+            "calculate": "0",
+            "as": "normalized_tweets_per_capita"
+        },
+        {
+            "calculate": "0",
+            "as": "tweets_per_capita"
+        },
+        {
+            "lookup": "properties.ISO_A3",
+            "from": {
+                "data": {
+                    "url": "https://raw.githubusercontent.com/lhut0006/FIT3179/refs/heads/main/data/tweets_by_country_normalized.csv"
+                },
+                "key": "ISO3",
+                "fields": [
+                    "normalized_tweets_per_capita",
+                    "tweets_per_capita"
+                ]
+            }
+        },
+        {
+            "calculate": "datum.normalized_tweets_per_capita !== null ? datum.normalized_tweets_per_capita : 0",
+            "as": "normalized_tweets_per_capita"
+        },
+        {
+            "calculate": "datum.tweets_per_capita !== null ? datum.tweets_per_capita : 0",
+            "as": "tweets_per_capita"
+        }
+    ],
+    "layer": [
+        {
+            "data": {
+                "sphere": true
+            },
+            "mark": {
+                "type": "geoshape",
+                "fill": "lightblue"
+            }
+        },
+        {
+            "mark": {
+                "type": "geoshape"
+            },
+            "encoding": {
+                "color": {
+                    "condition": {
+                        "test": "datum.tweets_per_capita > 0",
+                        "field": "normalized_tweets_per_capita",
+                        "type": "quantitative",
+                        "scale": {
+                            "type": "linear",
+                            "domain": [
+                                0.0,
+                                1.0
+                            ],
+                            "range": [
+                                "#fff7bc",
+                                "#fec44f",
+                                "#d95f0e"
+                            ]
+                        },
+                        "title": [
+                            "Engagement Index",
+                            "(Min-Max Normalization)"
+                        ]
+                    },
+                    "value": "lightgray"
+                },
+                "tooltip": [
+                    {
+                        "field": "country",
+                        "type": "nominal",
+                        "title": "Country"
+                    },
+                    {
+                        "field": "tweets_per_capita",
+                        "type": "quantitative",
+                        "title": "Tweets per Capita",
+                        "format": ".7f"
+                    },
+                    {
+                        "field": "normalized_tweets_per_capita",
+                        "type": "quantitative",
+                        "title": "Tweets per Capita Normalised",
+                        "format": ".2f"
+                    }
+                ]
+            }
+        },
+        {
+            "data": {
+                "url": "https://raw.githubusercontent.com/lhut0006/FIT3179/refs/heads/main/js/ne_110m.json",
+                "format": {
+                    "type": "topojson",
+                    "feature": "ne_110m_graticules_30"
+                }
+            },
+            "mark": {
+                "type": "geoshape",
+                "stroke": "lightgray",
+                "fill": null,
+                "strokeWidth": 0.5
+            }
+        }
+    ]
+}

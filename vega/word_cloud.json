@@ -1,0 +1,113 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v5.json",
+    "description": "Word cloud visualization of the most frequent words in tweets related to #donaldtrump and #biden.",
+    "width": 850,
+    "height": 400,
+    "padding": 0,
+    "background": "#f9f9f9",
+    "data": [
+        {
+            "name": "table",
+            "url": "https://raw.githubusercontent.com/lhut0006/FIT3179-Critique/refs/heads/main/datasets/global_word_counts.csv",
+            "format": {
+                "type": "csv"
+            },
+            "transform": [
+                {
+                    "type": "formula",
+                    "as": "angle",
+                    "expr": "[-45, 0, 45][~~(random() * 3)]"
+                },
+                {
+                    "type": "formula",
+                    "as": "weight",
+                    "expr": "if(datum.word == 'BIDEN' || datum.word == 'TRUMP', 600, 300)"
+                },
+                {
+                    "type": "formula",
+                    "as": "fontSize",
+                    "expr": "datum.count / 100"
+                }
+            ]
+        }
+    ],
+    "scales": [
+        {
+            "name": "color",
+            "type": "ordinal",
+            "domain": {
+                "data": "table",
+                "field": "hashtag"
+            },
+            "range": [
+                "#1f77b4",
+                "#ff7f0e"
+            ]
+        }
+    ],
+    "marks": [
+        {
+            "type": "text",
+            "from": {
+                "data": "table"
+            },
+            "encode": {
+                "enter": {
+                    "text": {
+                        "field": "word"
+                    },
+                    "align": {
+                        "value": "center"
+                    },
+                    "baseline": {
+                        "value": "alphabetic"
+                    },
+                    "fill": {
+                        "scale": "color",
+                        "field": "hashtag"
+                    }
+                },
+                "update": {
+                    "fillOpacity": {
+                        "value": 1
+                    }
+                },
+                "hover": {
+                    "fillOpacity": {
+                        "value": 0.5
+                    },
+                    "tooltip": {
+                        "signal": "{'Hashtag': datum.hashtag,'Word': datum.word, 'Count': datum.count}"
+                    }
+                }
+            },
+            "transform": [
+                {
+                    "type": "wordcloud",
+                    "size": [
+                        800,
+                        400
+                    ],
+                    "text": {
+                        "field": "word"
+                    },
+                    "rotate": {
+                        "field": "datum.angle"
+                    },
+                    "font": "Helvetica Neue",
+                    "fontSize": {
+                        "field": "datum.fontSize"
+                    },
+                    "fontWeight": {
+                        "field": "datum.weight"
+                    },
+                    "fontSizeRange": [
+                        12,
+                        56
+                    ],
+                    "padding": 2
+                }
+            ]
+        }
+    ]
+}

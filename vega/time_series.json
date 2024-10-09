@@ -1,0 +1,61 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Global tweets for the 2020 American election",
+    "data": {
+        "url": "https://raw.githubusercontent.com/lhut0006/FIT3179-Critique/refs/heads/main/datasets/daily_tweets.csv",
+        "format": {
+            "type": "csv"
+        }
+    },
+    "width": 300,
+    "height": 300,
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "date",
+            "type": "temporal",
+            "title": "Date",
+            "axis": {
+                "format": "%b %d, %Y"
+            }
+        },
+        "y": {
+            "field": "tweet_count",
+            "type": "quantitative",
+            "title": "Number of Tweets"
+        },
+        "color": {
+            "field": "hashtag",
+            "type": "nominal",
+            "title": "Hashtag",
+            "scale": {
+                "scheme": "category10"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "date",
+                "type": "temporal",
+                "title": "Date"
+            },
+            {
+                "field": "tweet_count",
+                "type": "quantitative",
+                "title": "Tweet Count"
+            },
+            {
+                "field": "hashtag",
+                "type": "nominal",
+                "title": "Hashtag"
+            }
+        ]
+    },
+    "transform": [
+        {
+            "filter": "datum.tweet_count > 0"
+        }
+    ]
+}
