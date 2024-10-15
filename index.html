@@ -26,24 +26,41 @@
         <!-- Title and Introduction -->
         <div class="pure-g">
             <div class="pure-u-1-1">
-                <h1 class="header">Visualisation Dashboard</h1>
+                <h1 class="header">2020 American Presidential Election <br> <span>- what went down -</span></h1>
+
                 <p style="text-align: center;">This dashboard presents visual insights into Twitter discussions
-                    surrounding the hashtags
-                    #donaldtrump and #biden. Explore the time series and word cloud visualisations below to understand
-                    trends and frequently mentioned words.</p>
+                    surrounding the hashtags #Trump and #Biden during the 2020 American presidential election.</p>
             </div>
         </div>
 
         <!-- Time Series Visualisation with Description -->
         <div class="heading">
-            <h2>Time Series Visualisation</h2>
+            <h2>Election Overview</h2>
         </div>
         <div class="pure-g">
             <div class="pure-u-1-2">
                 <div class="description description-left">
-                    <p style="text-align: left;">The time series visualisation displays the trend of tweets over time
-                        for each hashtag, allowing
-                        you to observe periods of high and low activity. Temporary text... Include filter for graph</p>
+                    <p style="text-align: left;">This visualisation depicts the number of global tweets containing
+                        the
+                        hashtags
+                        #Biden and #Trump in the lead-up to and just after the 2020 U.S. Presidential election. Two key
+                        events are marked: the Second Presidential Debate on October 22, 2020, and Election Day on
+                        November 3, 2020.</p>
+
+                    <p style="text-align: left">
+                        There is a notable spike in both hashtags following the Second Presidential Debate, where the
+                        #Trump hashtag slightly leads in number of tweets. However, as the end of the election
+                        approaches, the
+                        #Biden
+                        hashtag begins to surpass #Trump, with a significant increase around Election Day itself,
+                        peaking at around 150,000 tweets.
+                    </p>
+
+                    <p style="text-align: left">
+                        This trend suggests that discussions about Biden gained more traction globally as the election
+                        date neared, with tweet activity for both candidates increasing but #Biden gaining more
+                        momentum as results were announced.
+                    </p>
                 </div>
             </div>
             <div class="pure-u-1-2">
@@ -53,14 +70,23 @@
 
         <!-- Word Cloud Visualisation with Description -->
         <div class="heading">
-            <h2>Common discourse</h2>
+            <h2>Common Discourse</h2>
         </div>
         <div class="pure-g">
             <div class="pure-u-1 pure-u-md-1-3">
                 <div class="description description-left">
-                    <p style="text-align: center;">The word cloud highlights the most common words associated with
-                        #donaldtrump and #biden tweets,
-                        providing insights into frequently discussed topics and sentiments.</p>
+                    <p style="text-align: left;">
+                        The word cloud visualises the most frequent words in tweets related to #Trump and #Biden,
+                        highlighting the prominence of both political figures in public discourse. Larger words such as
+                        "trump," "biden," "joebiden," and "realdonaldtrump" dominate the visualisation, indicating the
+                        frequent mentions of these terms. Words like "election," "president," and "vote" suggest a focus
+                        on the election and the broader political environment.</p>
+
+                    <p style="text-align: left;">In addition to English terms, there are a variety of words in other
+                        languages like "es," "de," and "una," showing the international reach and engagement in
+                        discussions surrounding these political figures. The overall focus clearly
+                        revolves around the two key political figures, their campaigns, and related political events or
+                        sentiments.</p>
                 </div>
             </div>
             <div class="pure-u-1 pure-u-md-2-3">
@@ -68,27 +94,88 @@
             </div>
         </div>
 
+        <!-- scatterplot with Description -->
+        <div class="heading">
+            <h2>Hourly Breakdown</h2>
+        </div>
+        <div class="pure-g">
+            <div class="pure-u-1-2">
+                <div class="description description-left">
+                    <p style="text-align: left;">The plot depicts user engagement by hour for tweets containing the
+                        hashtags #Biden and #Trump. Each data point represents the average engagement levels throughout
+                        the day, with the blue circles indicating #Biden tweets and the orange circles representing
+                        #Trump tweets.</p>
+
+                    <p style="text-align: left;">The overall trend suggests that engagement levels for both hashtags
+                        tend to fluctuate, with some peaks observed around certain hours. Notably, the engagement for
+                        #Biden appears to be slightly higher during the early morning hours, while #Trump's engagement
+                        is relatively consistent but slightly lower.</p>
+
+                    <p style="text-align: left;">A general trend of engagement around hours 15-18 is visible in the data
+                        for #Biden, where these hours coincide with the candidate being elected, causing
+                        a spike in engagement on Twitter around the globe.</p>
+                </div>
+            </div>
+            <div class="pure-u-1-2">
+                <div id="scatterplot" class="vis-container"></div>
+            </div>
+        </div>
+
+
+        <!-- Second plot with sentiment -->
+        <div class="pure-g">
+            <div class="pure-u-1-2">
+                <div id="sentiment" class="vis-container"></div>
+            </div>
+            <div class="pure-u-1-2">
+                <div class="description description-right">
+                    <p style="text-align: left;">
+                        <a href="https://github.com/trinker/sentimentr?tab=readme-ov-file#the-equation"
+                            title="An explanation of how sentiment was calculated">
+                            Sentiment</a>
+
+                        analysis of tweets measures the emotions expressed in social media posts to understand
+                        public opinion. By examining the language used, we can classify tweets as positive, negative, or
+                        neutral. This helps us uncover how people feel about specific topics or events.
+
+                    </p>
+
+                    <p style="text-align: left;">From this graph, we can infer that tweets about Biden tend to
+                        carry a more positive sentiment, whereas tweets about
+                        Trump tend to have a more negative sentiment throughout the day. These insights suggest a
+                        stark contrast in how users engaged with the two candidates on Twitter during the
+                        presidential election. The sudden spike in sentiment for Biden around 3pm coincides with the
+                        hours after the candidate was announced as president.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
         <!-- World Map Visualisation with Description -->
         <div class="heading">
-            <h2>Tweets around the world</h2>
+            <h2>Tweets Around the World</h2>
         </div>
         <div class="pure-g">
             <div class="pure-u-1 pure-u-md-1-3">
                 <div class="description description-left">
-                    <p style="text-align: center;">This choropleth map visualizes the global engagement with the hashtag
-                        #trump on Twitter during the 2020 U.S. presidential election. The colors represent an Engagement
-                        Index, using min-max normalization to show the relative number of tweets per capita across
-                        countries. </p>
+                    <p style="text-align: left;">This choropleth map visualises the global engagement with the
+                        hashtags #Trump and #Biden on Twitter during the 2020 U.S. presidential election. The colours
+                        represent an
+                        Engagement Index, using min-max normalisation to show the relative number of tweets per capita
+                        across countries. </p>
 
-                    <p style="text-align: center;">
+                    <p style="text-align: left;">
                         Unsurprisingly, North America, particularly the United States and Canada, show the highest
                         levels of engagement. Other regions, such as Australia and parts of Europe, also demonstrate
-                        significant interest in the election.
+                        significant interest in the election despite being geographically isolated from the
+                        United States.
                     </p>
 
-                    <p style="text-align: center;">
+                    <p style="text-align: left;">
                         In contrast, large areas in Africa, South America, and parts of Asia show minimal engagement,
-                        highlighting how attention to the U.S. election varied globally.
+                        highlighting how attention to the U.S. election varied globally with significant engagement from
+                        specific English speaking regions.
                     </p>
                 </div>
             </div>
@@ -97,16 +184,57 @@
             </div>
         </div>
 
-        <!-- Next vis -->
+        <!-- sentiment by country -->
         <div class="heading">
-            <h2>continued</h2>
+            <h2>Sentiment Around the World</h2>
+        </div>
+        <div class="pure-g">
+            <div class="pure-u-1-2">
+                <div class="description description-left">
+                    <p style="text-align: left; padding-top: 50px;">
+                        In this visualisation, we’re looking at the sentiment associated with tweets that include the
+                        hashtags #Biden and #Trump across various countries. Each country is represented along the
+                        vertical axis, while the horizontal axis captures the sentiment values, indicating how positive
+                        or negative the tweets are.
+                    </p>
+
+                    <p style="text-align: left;">
+                        You can see a clear contrast in sentiment for the two hashtags in many
+                        countries. For instance, countries like Canada and Australia show a stronger positive sentiment
+                        toward #Biden, with the blue bars reflecting a favorable view, while the orange bars for #Trump
+                        tend to hover around neutrality or negativity.
+                    </p>
+                    On the other hand, India stands out with a notably negative sentiment for #Biden, suggesting a
+                    different public perception there. Overall, this visualisatoin highlights the varied attitudes
+                    toward these
+                    political figures worldwide, revealing important insights into how sentiment can differ by region
+                    and culture.
+                    <p style="text-align: left;">
+
+                    </p>
+                </div>
+            </div>
+            <div class="pure-u-1-2">
+                <div id="sentiment_country" class="vis-container" style="padding-top: 10px;"></div>
+            </div>
         </div>
 
         <!-- Footer -->
         <div class="pure-g">
-            <div class="pure-u-1 small-font">
-                <p>Visualisations created by <a href="https://fit3179.github.io/Vega-Lite/" target="_blank">Liam
-                        Huttig</a>. Data source: <a href="https://twitter.com/" target="_blank">Twitter</a>.</p>
+            <div class="pure-u-1 footer">
+                <p>Visualisations created by <a href="https://github.com/lhut0006" target="_blank">Liam
+                        Huttig</a>. Credits to Manch Hui for the <a
+                        href="https://www.kaggle.com/datasets/manchunhui/us-election-2020-tweets/data"
+                        target="_blank">data</a>.
+
+                    <br>
+                    Sentiment calculations courtesy of <a href="https://github.com/trinker">Tyler Rinker</a> from his <a
+                        href="https://github.com/trinker/sentimentr">sentimentr library</a>
+                    <br>
+
+                    Published: 15/10/2024
+                </p>
+
             </div>
         </div>
     </div> <!-- end page -->
@@ -116,6 +244,9 @@
         var time_series = "vega/time_series.json";
         var word_cloud = "vega/word_cloud.json";
         var world_map = "vega/choropleth_map.vg.json";
+        var scatterplot = "vega/scatterplot.json";
+        var sentiment = "vega/sentiment.json";
+        var sentiment_country = "vega/sentiment_country.json";
 
         vegaEmbed('#time_series', time_series, { "actions": false }).then(function (result) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
@@ -128,7 +259,31 @@
         vegaEmbed('#world_map', world_map, { "actions": false }).then(function (result) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
+
+        vegaEmbed('#scatterplot', scatterplot, { "actions": false }).then(function (result) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+
+        vegaEmbed('#sentiment', sentiment, { "actions": false }).then(function (result) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+
+        vegaEmbed('#sentiment_country', sentiment_country, { "actions": false }).then(function (result) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
     </script>
+
+    <!-- Trump and biden hashtag colour rendering script   -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const hashtags = document.body.innerHTML;
+            const coloredHashtags = hashtags
+                .replace(/#Trump/g, '<span class="hashtag trump">#Trump</span>')
+                .replace(/#Biden/g, '<span class="hashtag biden">#Biden</span>');
+            document.body.innerHTML = coloredHashtags;
+        });
+    </script>
+
 </body>
 
 </html>
