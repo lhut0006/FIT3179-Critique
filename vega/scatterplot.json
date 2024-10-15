@@ -1,0 +1,58 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "User Engagement by Hour for #Biden and #Trump Tweets",
+        "fontSize": 15
+    },
+    "width": 300,
+    "height": 300,
+    "data": {
+        "url": "https://raw.githubusercontent.com/lhut0006/FIT3179-Critique/refs/heads/main/datasets/combined_engagement.csv"
+    },
+    "mark": "point",
+    "encoding": {
+        "x": {
+            "field": "hour",
+            "type": "ordinal",
+            "title": "Hour of Day"
+        },
+        "y": {
+            "field": "avg_engagement",
+            "type": "quantitative",
+            "title": "Avg Engagement"
+        },
+        "color": {
+            "field": "hashtag",
+            "type": "nominal",
+            "title": "Hashtag",
+            "scale": {
+                "domain": [
+                    "#Biden",
+                    "#Trump"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "hour",
+                "type": "ordinal",
+                "title": "Hour"
+            },
+            {
+                "field": "avg_engagement",
+                "type": "quantitative",
+                "title": "Average Engagement",
+                "format": ".2f"
+            },
+            {
+                "field": "hashtag",
+                "type": "nominal",
+                "title": "Hashtag"
+            }
+        ]
+    }
+}

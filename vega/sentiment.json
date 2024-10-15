@@ -1,0 +1,84 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Average sentiment per hour for #Biden and #Trump tweets",
+        "fontSize": 15
+    },
+    "width": 280,
+    "height": 300,
+    "data": {
+        "url": "https://raw.githubusercontent.com/lhut0006/FIT3179-Critique/refs/heads/main/datasets/combined_sentiment.csv"
+    },
+    "layer": [
+        {
+            "mark": "line",
+            "encoding": {
+                "x": {
+                    "field": "hour",
+                    "type": "ordinal",
+                    "axis": {
+                        "title": "Hour of the Day"
+                    }
+                },
+                "y": {
+                    "field": "avg_sentiment",
+                    "type": "quantitative",
+                    "axis": {
+                        "title": "Average Sentiment"
+                    },
+                    "scale": {
+                        "domain": [
+                            -0.05,
+                            0.05
+                        ]
+                    }
+                },
+                "color": {
+                    "field": "hashtag",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": [
+                            "#Biden",
+                            "#Trump"
+                        ],
+                        "range": [
+                            "#1f77b4",
+                            "#ff7f0e"
+                        ]
+                    },
+                    "title": "Hashtag"
+                },
+                "tooltip": [
+                    {
+                        "field": "hour",
+                        "title": "Hour"
+                    },
+                    {
+                        "field": "avg_sentiment",
+                        "title": "Average Sentiment",
+                        "format": ".2f"
+                    },
+                    {
+                        "field": "hashtag",
+                        "title": "Hashtag"
+                    }
+                ]
+            }
+        },
+        {
+            "mark": {
+                "type": "rule",
+                "stroke": "black",
+                "strokeDash": [
+                    4,
+                    4
+                ]
+            },
+            "encoding": {
+                "y": {
+                    "value": 151
+                }
+            }
+        }
+    ]
+}

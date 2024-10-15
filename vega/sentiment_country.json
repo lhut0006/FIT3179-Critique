@@ -1,0 +1,89 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Sentiment Analysis for #Biden and #Trump by Country",
+        "fontSize": 14
+    },
+    "data": {
+        "url": "https://raw.githubusercontent.com/lhut0006/FIT3179-Critique/refs/heads/main/datasets/sentiment_country.csv"
+    },
+    "params": [
+        {
+            "name": "min_tweets",
+            "value": 14000,
+            "bind": {
+                "input": "range",
+                "min": 1000,
+                "max": 50000,
+                "step": 100,
+                "name": "Minimum number of tweets"
+            }
+        }
+    ],
+    "transform": [
+        {
+            "filter": "datum.tweet_count >= min_tweets"
+        }
+    ],
+    "mark": "bar",
+    "encoding": {
+        "y": {
+            "field": "country",
+            "type": "nominal",
+            "title": "Country"
+        },
+        "x": {
+            "field": "avg_sentiment",
+            "type": "quantitative",
+            "title": "Average Sentiment",
+            "scale": {
+                "domain": [
+                    -0.1,
+                    0.1
+                ]
+            }
+        },
+        "yOffset": {
+            "field": "hashtag"
+        },
+        "color": {
+            "field": "hashtag",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e"
+                ]
+            },
+            "title": "Hashtag"
+        },
+        "tooltip": [
+            {
+                "field": "country",
+                "type": "nominal",
+                "title": "Country"
+            },
+            {
+                "field": "hashtag",
+                "type": "nominal",
+                "title": "Hashtag"
+            },
+            {
+                "field": "avg_sentiment",
+                "type": "quantitative",
+                "title": "Average Sentiment",
+                "format": ".2f"
+            },
+            {
+                "field": "tweet_count",
+                "type": "quantitative",
+                "title": "Number of Tweets"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "size": 20
+        }
+    }
+}

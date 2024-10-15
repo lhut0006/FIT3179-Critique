@@ -1,10 +1,49 @@
 {
     "$schema": "https://vega.github.io/schema/vega/v5.json",
+    "title": {
+        "text": "Word frequency in tweets",
+        "fontSize": 16
+    },
     "description": "Word cloud visualization of the most frequent words in tweets related to #donaldtrump and #biden.",
     "width": 850,
     "height": 400,
     "padding": 0,
     "background": "#f9f9f9",
+    "signals": [
+        {
+            "name": "fontSizeMin",
+            "value": 12,
+            "bind": {
+                "input": "range",
+                "min": 5,
+                "max": 50,
+                "step": 1,
+                "name": "Font Size Min"
+            }
+        },
+        {
+            "name": "fontSizeMax",
+            "value": 56,
+            "bind": {
+                "input": "range",
+                "min": 20,
+                "max": 150,
+                "step": 1,
+                "name": "Font Size Max"
+            }
+        },
+        {
+            "name": "paddingVal",
+            "value": 2,
+            "bind": {
+                "input": "range",
+                "min": 0,
+                "max": 10,
+                "step": 1,
+                "name": "Padding"
+            }
+        }
+    ],
     "data": [
         {
             "name": "table",
@@ -26,7 +65,7 @@
                 {
                     "type": "formula",
                     "as": "fontSize",
-                    "expr": "datum.count / 100"
+                    "expr": "datum.count / 10"
                 }
             ]
         }
@@ -77,7 +116,7 @@
                         "value": 0.5
                     },
                     "tooltip": {
-                        "signal": "{'Hashtag': datum.hashtag,'Word': datum.word, 'Count': datum.count}"
+                        "signal": "{'Hashtag': datum.hashtag, 'Word': datum.word, 'Count': datum.count}"
                     }
                 }
             },
@@ -94,18 +133,24 @@
                     "rotate": {
                         "field": "datum.angle"
                     },
-                    "font": "Helvetica Neue",
+                    "font": "Helvetica Neue, Arial",
                     "fontSize": {
                         "field": "datum.fontSize"
                     },
+                    "fontSizeRange": [
+                        {
+                            "signal": "fontSizeMin"
+                        },
+                        {
+                            "signal": "fontSizeMax"
+                        }
+                    ],
                     "fontWeight": {
                         "field": "datum.weight"
                     },
-                    "fontSizeRange": [
-                        12,
-                        56
-                    ],
-                    "padding": 2
+                    "padding": {
+                        "signal": "paddingVal"
+                    }
                 }
             ]
         }
